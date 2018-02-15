@@ -2,10 +2,6 @@
 	padding: 30px;
 }
 
-body {
-	padding: 60px;
-}
-
 #videos,
 .piece-info,
 #audios,
@@ -26,7 +22,7 @@ body {
 	margin: 10px 0;
 }
 
-#show-videos, #show-audios, .card {
+#show-videos, #show-audios, #pi-container, .card {
 	margin: 20px;
 }
 
@@ -40,8 +36,7 @@ video {
 }
 
 #pi-goal {
-	font-size: 3vw;
-	border: 2px solid navy;
+	font-size: 200%;
 	color: white;
 	border-radius: 7px;
 	padding: 10px;

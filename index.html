@@ -15,114 +15,38 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script>
-		$(document).ready(function() {
-			"use strict";
-			$("#sports").on({
-				mouseenter: function() {
-					$("#sport-image").css("visibility", "visible");
-				},
-				mouseleave: function() {
-					$("#sport-image").css("visibility", "hidden");
-				}
-			});
-			$("#sports").children().mouseenter(function() {
-				var text = $(this).text().toLowerCase();
-				text = text.replace(/\s+/g, "");
-				$("#sport-image").attr("src", "img/" + text + ".png");
-				$(this).parent().find("span").hide();
-			});
-			(function() {
-				var videosOpened = false;
-				$("#show-videos").click(function() {
-					var $btn = $(this);
-					$("#videos").slideToggle(500, function() {
-						videosOpened = !videosOpened;
-						var newTxt = videosOpened ? "Ocultar" : "Mostrar";
-						newTxt = newTxt + " videos";
-						$btn.text(newTxt);
-					});
-				});
-				var audiosOpened = false;
-				$("#show-audios").click(function() {
-					var $btn = $(this);
-					$("#audios").fadeToggle(500, function() {
-						audiosOpened = !audiosOpened;
-						var newTxt = audiosOpened ? "Ocultar" : "Mostrar";
-						newTxt = newTxt + " audios";
-						$btn.text(newTxt);
-						if (audiosOpened) {
-							var delay = 0;
-							$(this).find(".card")
-							.each(function() {
-								$(this).delay(delay)
-								.slideDown();
-								delay += 350;
-							});
-						} else {
-							$(this).find(".card").hide();
-						}
-					});
-				})
-			})();
-			(function() {
-				var entered = false;
-				$("#pi-goal").mouseenter(function() {
-					if (entered) return;
-					entered = true;
-					$("#message-pi").show();
-					$(this).animate({
-						left: "0",
-					}, 500, function() {
-						$(this).parent().css("text-align", "left");
-						$(this).addClass("bg-warning")
-						.css({
-							"color": "white",
-							"position":"static"
-						});
-						var $newPar = $("<p>");
-						$newPar.text("3.")
-						.css({
-							fontSize: "2vw",
-							margin: "10px 0"
-						});
-						var $container = $("<div>");
-						$container.css("word-wrap", "break-word")
-						.append($newPar);
-						$(this).after($container);
-						var pi = "1415926535897932384626433832795028841971693993751" +
-							"058209749445923078164062862089986280348253421170679";
-						var i = 0;
-						var $piGoal = $(this);
-						var remaining = parseInt($piGoal.text());
-						var interval = setInterval(function() {
-							$newPar.text(function(index, prevText) {
-								return prevText + pi[i++];
-							});
-							if (i !== pi.length) {
-								$piGoal.text(function(index, prevText) {
-									return "¡" + --remaining + " dígitos restantes!";
-								});
-							} else {
-								$newPar.text(function(index, prevText) {
-									return prevText + "...";
-								});
-								clearInterval(interval);
-								$piGoal.removeClass("bg-warning")
-								.addClass("bg-success");
-							}
-						}, 70);
-					});
-					
-				});
-			})();
-		});
-	</script>
+	<script src="script.js"></script>
 </head>
-<body>
-	<div class="jumbotron text-center" >
-		<h1>Juan Camilo Pinilla</h1>
-		<p>Conóceme un poco...</p>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+		<a class="navbar-brand" href="#">JCPRS</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#academico">Académico</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#musica">Música</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#deportes">Deportes</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#otros">Otros</a>
+				</li> 
+			</ul>
+		</div> 
+	</nav>
+	<br /><br />
+	<div class="container-fluid">
+		<div class="jumbotron text-center">
+			<h1>Juan Camilo Pinilla</h1>
+			<p>Conóceme un poco...</p>
+		</div>
 	</div>
 	<div id="academico" class="container">
 		<h2 class="text-center">Académico</h2><br />
@@ -130,146 +54,152 @@
 	</div>
 	<div id="personal" class="container">
 		<h2 class="text-center">Personal</h2><br />
-		<h3>Música</h3>
-		<p>Si bien escuchar buena música es de por sí es un placer de la vida, hacer partícipe de la interpretación músical es una experiencia inigualable.</p>
-		<p>Empecé a aprender el violín a los 9 años en la academia Angel. Posteriormente pasé a estudiar violín a los cursos de extensión de la Universidad Pedagógica. Ahí mismo asistí a las prácticas de orquesta. A continuación tengo unos videos de una presentación en el Museo Nacional.</p>
-		<button id="show-videos" type="button" class="btn btn-info">Mostrar videos</button>
-		<div id="videos">
-			<p><em>(Por si no me reconoce, soy el que está más a la derecha :D)</em></p><br />
+		<div id="musica">
+			<h3>Música</h3>
+			<p>Si bien escuchar buena música es de por sí es un placer de la vida, hacer partícipe de la interpretación músical es una experiencia inigualable.</p>
+			<p>Empecé a aprender el violín a los 9 años en la academia Angel. Posteriormente pasé a estudiar violín a los cursos de extensión de la Universidad Pedagógica. Ahí mismo asistí a las prácticas de orquesta. A continuación tengo unos videos de una presentación en el Museo Nacional.</p>
+			<button id="show-videos" type="button" class="btn btn-info">Mostrar videos</button>
+			<div id="videos">
+				<p><em>(Por si no me reconoce, soy el que está más a la derecha :D)</em></p><br />
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="card">
+								<div class="card-body text-center">
+									<video controls>
+										<source src="videos/orquesta-1.mp4" type="video/mp4" />
+									</video>
+								</div>
+								<div class="card-footer">
+									<p><strong>Duo 1, Op. 8, mov. 1</strong></p>
+									<p>- I. J. Pleyel</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="card">
+								<div class="card-body text-center">
+									<video controls>
+										<source src="videos/orquesta-2.mp4" type="video/mp4" />
+									</video>
+								</div>
+								<div class="card-footer">
+									<p><strong>Duo 1, Op. 8, mov. 2</strong></p>
+									<p>- I. J. Pleyel</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="card">
+								<div class="card-body text-center">
+									<video controls>
+										<source src="videos/orquesta-3.mp4" type="video/mp4" />
+									</video>
+								</div>
+								<div class="card-footer">
+									<p><strong>Joy to the World</strong></p>
+									<p>- Isaac Watts</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p>He estado rodeado también en un entorno musical familiar: mi hermana toca flauta traversa, piano y saxofón. Mi papá también toca saxofón.
+				Empecé a tocar eventualmente el piano que está en la casa, y sin darme cuenta terminé tocando todos los días, se convirtió en otro instrumento que quería dominar.
+				He tenido la opotunidad de ver 3 CBU's en la universidad sobre la historia de la música, desde el siglo XVII hasta el siglo XX. Definitivamente mi periodo favorito es el perido romántico,
+				en especial Chopin, por lo que la mayoría de las obras que estoy practicando son de este compositor. Aquí puse algunas de las obras que estoy trabajando.
+			No me he grabado tocando las obras, son audios para que usted los disfrute de gente que sabe tocar piano mejor que yo.</p>
+			<button id="show-audios" type="button" class="btn btn-info">Mostrar audios</button>
+			<div id="audios">
+				<p><em>El primer audio se trata de mi obra favorita y la que tomará más tiempo en aprender.</em></p>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-4 col-md-6">
+							<div class="card">
+								<div class="card-body text-center">
+									<audio controls>
+										<source src="audios/piano-1.mp3" type="audio/mpeg" />
+									</audio>
+								</div>
+								<div class="card-footer">
+									<p><strong>Fantaisie Impromptu, Op.66</strong></p>
+									<p>- Frédéric Chopin</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="card">
+								<div class="card-body text-center">
+									<audio controls>
+										<source src="audios/piano-2.mp3" type="audio/mpeg" />
+									</audio>
+								</div>
+								<div class="card-footer">
+									<p><strong>Nocturne Op. 9 No. 2</strong></p>
+									<p>- Frédéric Chopin</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="card">
+								<div class="card-body text-center">
+									<audio controls>
+										<source src="audios/piano-3.mp3" type="audio/mpeg" />
+									</audio>
+								</div>
+								<div class="card-footer">
+									<p><strong>Nocturne Op. 20 in C sharp minor</strong></p>
+									<p>- Frédéric Chopin</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="card">
+								<div class="card-body text-center">
+									<audio controls>
+										<source src="audios/piano-4.mp3" type="audio/mpeg" />
+									</audio>
+								</div>
+								<div class="card-footer">
+									<p><strong>Prelude Op. 28 No. 4</strong></p>
+									<p>- Frédéric Chopin</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p><em>Como puede notarlo, soy fanático de cierto compositor.</em></p>
+			</div>
+		</div>
+		<div id="deportes">
+			<h3>Deportes</h3>
+			<p>Siempre he sido un fanático de los deportes. Estos son los deportes que he realizado.</p>
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-4">
-						<div class="card">
-							<div class="card-body text-center">
-								<video controls>
-									<source src="videos/orquesta-1.mp4" type="video/mp4" />
-								</video>
-							</div>
-							<div class="card-footer">
-								<p><strong>Duo 1, Op. 8, mov. 1</strong></p>
-								<p>- I. J. Pleyel</p>
-							</div>
-						</div>
+					<div class="col-sm-6">
+						<ul id="sports">
+							<li>Karate <span class="fa fa-hand-pointer-o"></span></li>
+							<li>Patinaje</li>
+							<li>Esgrima</li>
+							<li>Voleibol</li>
+							<li>Natacion</li>
+							<li>Tenis de mesa</li>
+							<li>Tenis de campo</li>
+						</ul>
 					</div>
-					<div class="col-lg-4">
-						<div class="card">
-							<div class="card-body text-center">
-								<video controls>
-									<source src="videos/orquesta-2.mp4" type="video/mp4" />
-								</video>
-							</div>
-							<div class="card-footer">
-								<p><strong>Duo 1, Op. 8, mov. 2</strong></p>
-								<p>- I. J. Pleyel</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="card">
-							<div class="card-body text-center">
-								<video controls>
-									<source src="videos/orquesta-3.mp4" type="video/mp4" />
-								</video>
-							</div>
-							<div class="card-footer">
-								<p><strong>Joy to the World</strong></p>
-								<p>- Isaac Watts</p>
-							</div>
-						</div>
+					<div class="col-sm-6 text-center">
+						<img src="karate.gif" id="sport-image" height="200" width="200" alt="Sport image">
 					</div>
 				</div>
 			</div>
 		</div>
-		<p>He estado rodeado también en un entorno musical familiar: mi hermana toca flauta traversa, piano y saxofón. Mi papá también toca saxofón.
-			Empecé a tocar eventualmente el piano que está en la casa, y sin darme cuenta terminé tocando todos los días, se convirtió en otro instrumento que quería dominar.
-			He tenido la opotunidad de ver 3 CBU's en la universidad sobre la historia de la música, desde el siglo XVII hasta el siglo XX. Definitivamente mi periodo favorito es el perido romántico,
-			en especial Chopin, por lo que la mayoría de las obras que estoy practicando son de este compositor. Aquí puse algunas de las obras que estoy trabajando.
-		No me he grabado tocando las obras, son audios para que usted los disfrute de gente que sabe tocar piano mejor que yo.</p>
-		<button id="show-audios" type="button" class="btn btn-info">Mostrar audios</button>
-		<div id="audios">
-			<p><em>El primer audio se trata de mi obra favorita y la que tomará más tiempo en aprender.</em></p>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-4 col-md-6">
-						<div class="card">
-							<div class="card-body text-center">
-								<audio controls>
-									<source src="audios/piano-1.mp3" type="audio/mpeg" />
-								</audio>
-							</div>
-							<div class="card-footer">
-								<p><strong>Fantaisie Impromptu, Op.66</strong></p>
-								<p>- Frédéric Chopin</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="card">
-							<div class="card-body text-center">
-								<audio controls>
-									<source src="audios/piano-2.mp3" type="audio/mpeg" />
-								</audio>
-							</div>
-							<div class="card-footer">
-								<p><strong>Nocturne Op. 9 No. 2</strong></p>
-								<p>- Frédéric Chopin</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="card">
-							<div class="card-body text-center">
-								<audio controls>
-									<source src="audios/piano-3.mp3" type="audio/mpeg" />
-								</audio>
-							</div>
-							<div class="card-footer">
-								<p><strong>Nocturne Op. 20 in C sharp minor</strong></p>
-								<p>- Frédéric Chopin</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="card">
-							<div class="card-body text-center">
-								<audio controls>
-									<source src="audios/piano-4.mp3" type="audio/mpeg" />
-								</audio>
-							</div>
-							<div class="card-footer">
-								<p><strong>Prelude Op. 28 No. 4</strong></p>
-								<p>- Frédéric Chopin</p>
-							</div>
-						</div>
-					</div>
-				</div>
+		<div id="otros">
+			<h3>Otros</h3>
+			<p id="message-pi">Recientemente me propuse memorizar los primeros 1,000 dígitos de pi. ¿Por qué? No hay razón específica, seguramente porque hacerlo es un reto. Estos son los que llevo hasta ahora...</p>
+			<div id="pi-container">
+				<span id="pi-goal" class="bg-info">1000</span>
 			</div>
-			<p><em>Como puede notarlo, soy fanático de cierto compositor.</em></p>
-		</div>
-		<h3>Deportes</h3>
-		<p>Siempre he sido un fanático de los deportes. Estos son los deportes que he realizado.</p>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<ul id="sports">
-						<li>Karate <span class="fa fa-hand-pointer-o"></span></li>
-						<li>Patinaje</li>
-						<li>Esgrima</li>
-						<li>Voleibol</li>
-						<li>Natacion</li>
-						<li>Tenis de mesa</li>
-						<li>Tenis de campo</li>
-					</ul>
-				</div>
-				<div class="col-sm-6 text-center">
-					<img src="karate.gif" id="sport-image" height="200" width="200" alt="Sport image">
-				</div>
-			</div>
-		</div>
-		<h4>Otros</h4>
-		<p id="message-pi">Recientemente me propuse memorizar los primeros 1,000 dígitos de pi. ¿Por qué? No hay razón específica, seguramente porque hacerlo es un reto. Estos son los que llevo hasta ahora...</p>
-		<div id="pi-container">
-			<span id="pi-goal" class="bg-info">1000</span>
 		</div>
 	</div>
 </body>
