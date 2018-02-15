@@ -2,6 +2,15 @@ body > .container-fluid {
 	padding-top: 60px;
 }
 
+.jumbotron {
+	background-color: #adcad8;
+}
+
+body {
+	font-family: "Work Sans", Times, sans-serif;
+	background-color: #eaf8ff;
+}
+
 #videos,
 .piece-info,
 #audios,
@@ -57,6 +66,6 @@ video {
 	margin-bottom: 50px;
 }
 
-.fa {
+#contacto .fa {
 	font-size: 2rem;
 }
