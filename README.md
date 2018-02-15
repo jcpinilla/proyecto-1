@@ -8,4 +8,4 @@ Este proyecto se trata de mi página web personal. Esta fue desarrollada durante
 
 ## Licencia
 
-Este proyecto está licenciado bajo la MIT Licence - ver los detalles en [LICENCE](LINCENCE)
+Este proyecto está licenciado bajo la MIT Licence - ver detalles en [LICENCE](LINCENCE)
