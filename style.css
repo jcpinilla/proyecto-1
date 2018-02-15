@@ -1,5 +1,5 @@
-.jumbotron {
-	padding: 30px;
+body > .container-fluid {
+	padding-top: 60px;
 }
 
 #videos,
@@ -47,4 +47,16 @@ video {
 #pi-container {
 	text-align: center;
 	position: relative;
+}
+
+#otros {
+	padding-bottom: 60px;
+}
+
+#contacto {
+	margin-bottom: 50px;
+}
+
+.fa {
+	font-size: 2rem;
 }
