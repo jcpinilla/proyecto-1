@@ -1,0 +1,55 @@
+.jumbotron {
+	padding: 30px;
+}
+
+body {
+	padding: 60px;
+}
+
+#videos,
+.piece-info,
+#audios,
+#audios .card,
+#message-pi {
+	display: none;
+}
+
+#sport-image {
+	visibility: hidden;
+}
+
+#videos {
+	margin: 20px 0;
+}
+
+#sports li {
+	margin: 10px 0;
+}
+
+#show-videos, #show-audios, .card {
+	margin: 20px;
+}
+
+audio {
+	width: 100%;
+}
+
+video {
+	height: 200px;
+	width: 100%;
+}
+
+#pi-goal {
+	font-size: 3vw;
+	border: 2px solid navy;
+	color: white;
+	border-radius: 7px;
+	padding: 10px;
+	position: absolute;
+	display: inline;
+}
+
+#pi-container {
+	text-align: center;
+	position: relative;
+}
